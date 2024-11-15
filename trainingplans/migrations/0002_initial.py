@@ -10,34 +10,46 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('trainingplans', '0001_initial'),
+        ("trainingplans", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='exercise',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="exercise",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AddField(
-            model_name='trainingcategory',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="trainingcategory",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AddField(
-            model_name='workoutplan',
-            name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='workout_plans', to='trainingplans.trainingcategory'),
+            model_name="workoutplan",
+            name="category",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="workout_plans",
+                to="trainingplans.trainingcategory",
+            ),
         ),
         migrations.AddField(
-            model_name='workoutplan',
-            name='exercises',
-            field=models.ManyToManyField(related_name='workout_plans', to='trainingplans.exercise'),
+            model_name="workoutplan",
+            name="exercises",
+            field=models.ManyToManyField(
+                related_name="workout_plans", to="trainingplans.exercise"
+            ),
         ),
         migrations.AddField(
-            model_name='workoutplan',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="workoutplan",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]
